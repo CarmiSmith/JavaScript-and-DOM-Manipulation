@@ -7,14 +7,14 @@ console.log(tableData);
 // Get a reference to the table body
 var tbody = d3.select("tbody");
 
-// UFO Sighting values for each column
+// Sighting values for each column
 tableData.forEach(sightings => {
     console.log(sightings);
 
-    // Append one table row `tr` for each UFO Sighting object
+    // Append one table row `tr` for each Sighting object
     var row = tbody.append("tr");
 
-    // Use `Object.entries` to console.log each UFO Sighting value
+    // Use `Object.entries` to console.log each Sighting value
     Object.entries(sightings).forEach(function([key, value]) {
       console.log(key, value);
 
@@ -53,10 +53,10 @@ button.on("click", function() {
     // Console.log selections
     console.log(selections);
 
-    // Append one table row `tr` for each UFO Sighting object
+    // Append one table row `tr` for each Sighting object
     var row = tbody.append("tr");
 
-    // Use `Object.entries` to console.log each UFO Sighting value
+    // Use `Object.entries` to console.log each Sighting value
     Object.entries(selections).forEach(function([key, value]) {
         console.log(key, value);
 
