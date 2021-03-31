@@ -1,22 +1,15 @@
 // From data.js
 var tableData = data;
 
-// Console.log table data
-console.log(tableData);
-
 // Get a reference to the table body
 var tbody = d3.select("tbody");
 
 // Sighting values for each column
 tableData.forEach(sightings => {
-    console.log(sightings);
 
-    // Append one table row `tr` for each Sighting object
+    // Append one table row for each sighting
     var row = tbody.append("tr");
-
-    // Use `Object.entries` to console.log each Sighting value
     Object.entries(sightings).forEach(function([key, value]) {
-      console.log(key, value);
 
       // Append a cell to the row for each value
       var cell = row.append("td");
@@ -29,40 +22,31 @@ tableData.forEach(sightings => {
 var button = d3.select("#filter-btn");
 button.on("click", function() {
 
+    // Select the input date 
+    var inputDate = d3.select("#datetime");
+    // Get the value property
+    var inputValue = inputDate.property("value");
+
+    // Filtering Data 
+    var filteredData = tableData.filter(date => date.datetime === inputValue);
+
     // Clears the initial build table
     tbody.html("");
 
-    // Select the input date get the raw HTML nodes
-    var inputDate = d3.select("#datetime");
+    // Rewrites the table with the filtered results
+    filteredData.forEach(selected => {
 
-    // Get the value property of the input date, state, shape
-    var inputValue = inputDate.property("value");
-
-    // Console.log input value
-    console.log(inputValue);
-
-    // Filter Data with datetime equal to input value
-    var filteredData = tableData.filter(sighting => sighting.datetime === inputValue);
-
-    // Console.log filter values
-    console.log(filteredData);
-
-    
-    filteredData.forEach(selections => {
-    
-    // Console.log selections
-    console.log(selections);
-
-    // Append one table row `tr` for each Sighting object
+    // Append one table row for each sighting object
     var row = tbody.append("tr");
-
-    // Use `Object.entries` to console.log each Sighting value
-    Object.entries(selections).forEach(function([key, value]) {
-        console.log(key, value);
+    Object.entries(selected).forEach(function([key, value]) {
 
         // Append a cell to the row for each value
         var cell = row.append("td");
         cell.text(value);
     });
 });
+document.getElementById("reset").onclick = function() {
+  document.getElementById("#filter-btn").innerHTML = "";
+};
 });
+

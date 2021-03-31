@@ -1,24 +1,15 @@
 // From data.js
 var tableData = data;
 
-// console.log table data
-console.log(tableData);
-
 // Get a reference to the table body
 var tbody = d3.select("tbody");
 
-// UFO Sighting values for each column
+// Sighting values for each column
 tableData.forEach(sightings => {
 
-    // Console.log sightings
-    console.log(sightings);
-
-    // Append one table row `tr` for each Sighting object
+    // Append one table row for each sighting 
     var row = tbody.append("tr");
-
-    // Use `Object.entries` to console.log each Sighting value
     Object.entries(sightings).forEach(function([key, value]) {
-      console.log(key, value);
 
       // Append a cell to the row for each value
       var cell = row.append("td");
@@ -31,13 +22,9 @@ tableData.forEach(sightings => {
 var button = d3.select("#filter-btn");
 button.on("click", function() {
 
-    // Start with clean table
-    tbody.html("");
-
-    // Select the input date, state, shape and get the raw HTML nodes
+    // Select the input  
     var inputElement = d3.select("#input");
-
-    // Get the value property of the input date, state, shape
+    // Get the value property 
     var inputValue = inputElement.property("value");
  
     // Filter Data with datetime equal to input value
@@ -46,27 +33,24 @@ button.on("click", function() {
                                                     sighting.state === inputValue ||
                                                     sighting.country === inputValue ||
                                                     sighting.shape === inputValue);
-    
-    // Console.log filteredData                                               
-    console.log(filteredData);
+
+    // Start with clean table
+    tbody.html("");
 
     // Filter values
-    filteredData.forEach(selections => {
+    filteredData.forEach(selected => {
 
-    // Console.log selections
-    console.log(selections);
-
-    // Append one table row `tr` for each Sighting object
+    // Append one table row for each sighting 
     var row = tbody.append("tr");
-
-    // Use `Object.entries` to console.log each Sighting value
-    Object.entries(selections).forEach(function([key, value]) {
-        console.log(key, value);
+    Object.entries(selected).forEach(function([key, value]) {
 
         // Append a cell to the row for each value
         var cell = row.append("td");
         cell.text(value);
     });
 });
+document.getElementById("reset").onclick = function() {
+  document.getElementById("#input").innerHTML = "";
+};
 });
 
